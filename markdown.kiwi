@@ -1,0 +1,17 @@
+# a simple markdown generation kiwi script
+
+import "@kiwi/fs"
+
+fn main()
+  (fs::glob("./**/*.cs")).each(with (path) do
+    if !path.contains("/obj/")
+      printsrc(path)
+    end
+  end)
+end
+
+fn printsrc(path)
+  println("# ${path}\n\n```csharp\n${fs::read(path)}\n```\n")
+end
+
+main()
